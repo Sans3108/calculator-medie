@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator Medie</title>
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
   <div class="intro">
     <h1>Calculator Medie</h1>
     <p>N-am avut ce sa fac asa ca am facut asta.</p>
   </div>
-
-  <div class="wrapper">
-    <p id="calc">Formula: suma notelor / numarul de note (rotunjit la 2 decimale)<br>Notele tale vor aparea aici, aplicate in formula</p>
-    <p id="result">Si media va fi afisata aici</p>
+  <div class="wrapper" id='wrapper'>
+    <p id="calc">Notele tale vor aparea aici si vor fi puse in formula</p>
+    <p id="result">Iar media va fi afisata aici</p>
 
     <div class="grade-grid">
       <button class="grade-btn" onclick="addGrade(1)">1</button>
@@ -30,8 +29,23 @@
       <button class="grade-btn" onclick="addGrade(10)">10</button>
     </div>
 
-    <button class="reset-btn" onclick="reset()">Sterge Notele</button>
-    <p id="hint"><em>Apasa pe notele care le ai, sau pe "Sterge Notele" ca sa incepi de la capat. Media va fi calculata automat.</em></p>
+    <p class="thesis">Teza? <button class="thesis-btn-red" id="toggleBtn" onclick="thesisToggle()">Nu</button></p>
+
+    <div class="grade-grid hidden" id="gradeGrid">
+      <button class="grade-btn" onclick="setThesis(1)">1</button>
+      <button class="grade-btn" onclick="setThesis(2)">2</button>
+      <button class="grade-btn" onclick="setThesis(3)">3</button>
+      <button class="grade-btn" onclick="setThesis(4)">4</button>
+      <button class="grade-btn" onclick="setThesis(5)">5</button>
+      <button class="grade-btn" onclick="setThesis(6)">6</button>
+      <button class="grade-btn" onclick="setThesis(7)">7</button>
+      <button class="grade-btn" onclick="setThesis(8)">8</button>
+      <button class="grade-btn" onclick="setThesis(9)">9</button>
+      <button class="grade-btn" onclick="setThesis(10)">10</button>
+    </div>
+
+    <button class="reset-btn" onclick="reset()">Reset</button>
+    <p id="hint"><em>Apasa pe notele care le ai, sau pe "Reset" ca sa incepi de la capat. Media va fi calculata automat.</em></p>
 
   </div>
 </body>

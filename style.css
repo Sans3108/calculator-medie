@@ -40,8 +40,8 @@ body {
 .wrapper {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 20px;
+  transform: translateX(-50%);
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -100,7 +100,7 @@ button:hover {
 
 .reset-btn {
   margin: 5px;
-  width: 200px;
+  width: auto;
   text-align: center;
   align-self: center;
   font-size: small;
@@ -116,4 +116,147 @@ button:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-self: center;
+}
+
+.thesis {
+  font-weight: 700;
+  align-self: center;
+}
+
+.thesis-btn-red {
+  width: 40px;
+  text-align: center;
+  align-self: center;
+  font-size: small;
+  font-weight: 800;
+  border-radius: 16px;
+  padding: 5px 5px;
+  border: 2px solid black;
+  background-color: rgba(255, 72, 0, 0.8);
+}
+
+.thesis-btn-green {
+  width: 40px;
+  text-align: center;
+  align-self: center;
+  font-size: small;
+  font-weight: 800;
+  border-radius: 16px;
+  padding: 5px 5px;
+  border: 2px solid black;
+  background-color: rgba(0, 255, 0, 0.8);
+}
+
+.hidden {
+  display: none;
+}
+
+.effect-red {
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  40% {
+    color: rgba(255, 0, 0, 1);
+  }
+
+  100% {
+    color: rgba(0, 0, 0, 1);
+  }
+}
+
+.effect-yellow {
+  animation: pulse-yellow 2s infinite;
+}
+
+@keyframes pulse-yellow {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  40% {
+    color: rgba(255, 255, 0, 1);
+  }
+
+  100% {
+    color: rgba(0, 0, 0, 1);
+  }
+}
+
+.effect-blue {
+  animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-blue {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  40% {
+    color: rgb(0, 132, 255);
+  }
+
+  100% {
+    color: rgba(0, 0, 0, 1);
+  }
+}
+
+.effect-green {
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  40% {
+    color: rgb(0, 255, 0);
+  }
+
+  100% {
+    color: rgba(0, 0, 0, 1);
+  }
+}
+
+.effect-rainbow {
+  animation: pulse-rainbow 2s infinite;
+}
+
+@keyframes pulse-rainbow {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  15% {
+    color: rgb(255, 0, 0);
+  }
+
+  30% {
+    color: rgb(255, 187, 0);
+  }
+
+  45% {
+    color: rgb(0, 255, 0);
+  }
+
+  60% {
+    color: rgb(0, 132, 255);
+  }
+
+  75% {
+    color: rgb(217, 0, 255);
+  }
+
+  90% {
+    color: rgb(132, 0, 255);
+  }
+
+  100% {
+    color: rgba(0, 0, 0, 1);
+  }
 }
