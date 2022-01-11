@@ -1,3 +1,29 @@
+function meteor() {
+	let amount = 100;
+	let body = document.querySelector("body");
+	let count = 0;
+
+	while (count < amount) {
+		let drop = document.createElement("i");
+
+		let size = Math.random() * 5;
+		let posX = Math.floor(Math.random() * window.innerWidth);
+		let delay = Math.random() * -20;
+		let duration = Math.random() * 10;
+
+		drop.style.width = `${0.1 + size}px`;
+		drop.style.left = `${posX}px`;
+    drop.style.top = 0;
+		drop.style.animationDelay = `${delay}s`;
+		drop.style.animationDuration = `${1 + duration}s`;
+
+		body.appendChild(drop);
+		count++;
+	}
+}
+
+meteor();
+
 function roundToTwo(n) {
   return +(Math.round(n + "e+2") + "e-2");
 }
@@ -40,17 +66,17 @@ function update() {
 
 function thesisToggle(s = false) {
   let toggleBtn = document.getElementById('toggleBtn');
-  let grid = document.getElementById('gradeGrid');
+  let grid = document.getElementById('thesisGrid');
 
   if (s) {
     toggleBtn.innerText = 'Nu'
     toggleBtn.className = 'thesis-btn-red';
-    grid.className = 'grade-grid hidden'
+    grid.className = 'thesis-grid hidden'
     thesis = 0;
   } else {
     toggleBtn.innerText = toggleBtn.innerText === 'Da' ? 'Nu' : 'Da';
     toggleBtn.className = toggleBtn.innerText === 'Da' ? 'thesis-btn-green' : 'thesis-btn-red';
-    grid.className = grid.className === 'grade-grid hidden' ? 'grade-grid' : 'grade-grid hidden'
+    grid.className = grid.className === 'thesis-grid hidden' ? 'thesis-grid' : 'thesis-grid hidden'
     if (toggleBtn.innerText === 'Nu') thesis = 0;
   }
   update();

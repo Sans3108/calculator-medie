@@ -14,22 +14,59 @@ html {
 }
 
 body {
-  background: linear-gradient(
-      217deg,
-      rgba(255, 0, 0, 0.8),
-      rgba(255, 0, 0, 0) 70.71%
-    ),
-    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
-    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#c58267, #77498a);
+  height: 100vh;
+  overflow: hidden;
+}
+i {
+  position: absolute;
+  height: 160px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.2));
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  animation: raining 5s linear Infinite;
+}
+@-moz-keyframes raining {
+  0% {
+    transform: translateY(-160px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 160px));
+  }
+}
+@-webkit-keyframes raining {
+  0% {
+    transform: translateY(-160px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 160px));
+  }
+}
+@-o-keyframes raining {
+  0% {
+    transform: translateY(-160px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 160px));
+  }
+}
+@keyframes raining {
+  0% {
+    transform: translateY(-160px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 160px));
+  }
 }
 
 .intro {
   margin-top: 20px;
-  position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   padding: 0px 5px;
   text-align: center;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
 .intro p {
@@ -38,16 +75,17 @@ body {
 }
 
 .wrapper {
-  position: absolute;
   left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
+  top: 50%;
+  width: auto;
   padding: 30px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   border-radius: 16px;
   border: 2px solid black;
   background-color: rgba(0, 0, 0, 0.2);
+  text-shadow: 0px 0px 17px rgba(0, 0, 0, 0.5);
 }
 
 .wrapper p#result {
@@ -95,7 +133,18 @@ button:hover {
   border-radius: 16px;
   padding: 10px 10px;
   border: 2px solid black;
-  background-color: rgba(255, 154, 225, 0.75);
+  background-color: rgba(255, 194, 154, 0.75);
+}
+
+.thesis-select-btn {
+  margin: 5px;
+  text-align: center;
+  font-size: small;
+  font-weight: 800;
+  border-radius: 16px;
+  padding: 10px 10px;
+  border: 2px solid black;
+  background-color: rgba(255, 154, 154, 0.75);
 }
 
 .reset-btn {
@@ -108,10 +157,17 @@ button:hover {
   border-radius: 16px;
   padding: 10px 10px;
   border: 2px solid black;
-  background-color: rgba(255, 190, 190, 0.75);
+  background-color: rgba(255, 170, 58, 0.75);
 }
 
 .grade-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-self: center;
+}
+
+.thesis-grid {
   margin-top: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -132,7 +188,7 @@ button:hover {
   border-radius: 16px;
   padding: 5px 5px;
   border: 2px solid black;
-  background-color: rgba(255, 72, 0, 0.8);
+  background-color: rgba(255, 91, 70, 0.75);
 }
 
 .thesis-btn-green {
@@ -144,7 +200,7 @@ button:hover {
   border-radius: 16px;
   padding: 5px 5px;
   border: 2px solid black;
-  background-color: rgba(0, 255, 0, 0.8);
+  background-color: rgba(98, 255, 70, 0.75);
 }
 
 .hidden {
