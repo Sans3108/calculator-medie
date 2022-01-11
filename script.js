@@ -1,5 +1,5 @@
 function meteor() {
-	let amount = 100;
+	let amount = 20;
 	let body = document.querySelector("body");
 	let count = 0;
 
