@@ -1,28 +1,9 @@
-function meteor() {
-	let amount = 20;
-	let body = document.querySelector("body");
-	let count = 0;
-
-	while (count < amount) {
-		let drop = document.createElement("i");
-
-		let size = Math.random() * 5;
-		let posX = Math.floor(Math.random() * window.innerWidth);
-		let delay = Math.random() * -20;
-		let duration = Math.random() * 10;
-
-		drop.style.width = `${0.1 + size}px`;
-		drop.style.left = `${posX}px`;
-    drop.style.top = 0;
-		drop.style.animationDelay = `${delay}s`;
-		drop.style.animationDuration = `${1 + duration}s`;
-
-		body.appendChild(drop);
-		count++;
-	}
+function randomBg() {
+  let body = document.getElementById('body');
+  body.className = Math.random() < 0.5 ? 'night' : 'day';
 }
 
-meteor();
+isFloat = x => !!(x % 1);
 
 function roundToTwo(n) {
   return +(Math.round(n + "e+2") + "e-2");
@@ -45,6 +26,8 @@ function reset() {
   update();
   effect(false);
   thesisToggle(true);
+  let m = document.getElementById('mean');
+  m.innerText = ``;
 }
 
 function update() {
@@ -59,8 +42,14 @@ function update() {
 
   let preText = `Media ta este:`;
 
-  calc.innerText = `${preText} ${makeFormulaString(gradeArr, thesis)}`;
-  result.innerText = calculateMean(gradeArr, thesis);
+  calc.innerHTML = `${preText} ${makeFormulaString(gradeArr, thesis)}`;
+  let data = calculateMean(gradeArr, thesis);
+
+  if (isFloat(data.mean)) {
+    let m = document.getElementById('mean');
+    m.innerText = `(${data.mean})`;
+  }
+  result.innerText = `${data.rounded}`;
   effect();
 }
 
@@ -88,34 +77,45 @@ function setThesis(g) {
 }
 
 function calculateMean(grd, t) {
+  let data = {
+    mean: 0,
+    rounded: 0
+  }
+
   if (!grd[0]) {
-    if (t !== 0) return t;
+    if (t !== 0) {
+      data.mean = t;
+      data.rounded = t;
+      return data;
+    };
   }
 
   let val = 0;
   grd.forEach(i => val += i);
 
-  let mean = roundToTwo(val / grd.length);
+  data.mean = roundToTwo(val / grd.length);
 
-  if (t !== 0) mean = Math.round(roundToTwo(((mean * 3) + t) / 4));
-  return mean;
+  if (t !== 0) data.mean = roundToTwo(((data.mean * 3) + t) / 4);
+
+  data.rounded = Math.round(data.mean);
+  return data;
 }
 
 function makeFormulaString(grd, t) {
   if (t === 0) {
-    if (grd[1]) return `(${grd.join(' + ')}) / ${grd.length} =`;
+    if (grd[1]) return `(${grd.map(g => `<span class="grade-num">${g}</span>`).join(' + ')}) / <span class="grade-count">${grd.length}</span> =`;
     return '';
   }
 
   if (!grd[0] && t !== 0) return '';
 
-  if (grd[1]) return `((${grd.join(' + ')}) / ${grd.length} * 3 + ${t}) / 4 =`;
-  return `(${grd[0]} / ${grd.length} * 3 + ${t}) / 4 =`;
+  if (grd[1]) return `((${grd.map(g => `<span class="grade-num">${g}</span>`).join(' + ')}) / <span class="grade-count">${grd.length}</span> * 3 + <span class="thesis-num">${t}</span>) / 4 =`;
+  return `(<span class="grade-num">${grd[0]}</span> / <span class="grade-count">${grd.length}</span> * 3 + <span class="thesis-num">${t}</span>) / 4 =`;
 }
 
 function effect(s = true) {
   let result = document.getElementById('result');
-  let mean = calculateMean(gradeArr, thesis);
+  let mean = calculateMean(gradeArr, thesis).rounded;
 
   if (!s) {
     result.className = '';

@@ -7,45 +7,52 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <div class="intro">
-    <h1>Calculator Medie</h1>
-    <p>N-am avut ce sa fac asa ca am facut asta.</p>
-  </div>
-  <div class="wrapper" id='wrapper'>
-    <p id="calc">Notele tale vor aparea aici si vor fi puse in formula</p>
-    <p id="result">Iar media va fi afisata aici</p>
-
-    <div class="grade-grid">
-      <button class="grade-btn" onclick="addGrade(1)">1</button>
-      <button class="grade-btn" onclick="addGrade(2)">2</button>
-      <button class="grade-btn" onclick="addGrade(3)">3</button>
-      <button class="grade-btn" onclick="addGrade(4)">4</button>
-      <button class="grade-btn" onclick="addGrade(5)">5</button>
-      <button class="grade-btn" onclick="addGrade(6)">6</button>
-      <button class="grade-btn" onclick="addGrade(7)">7</button>
-      <button class="grade-btn" onclick="addGrade(8)">8</button>
-      <button class="grade-btn" onclick="addGrade(9)">9</button>
-      <button class="grade-btn" onclick="addGrade(10)">10</button>
+<body id="body" onload="randomBg()">
+  <p id="version"><a href="https://github.com/Sans3108/calculator-medie"><em>v0.8</em></a></p>
+  <div class="second-body">
+    <div class="intro">
+      <h1>Calculator Medie</h1>
+      <p>N-am avut ce sa fac asa ca am facut asta.</p>
+      <p class="formula-text">Formula Mediei: <em id="formula-em">(x₁ + x₂ ... + xₙ) / n</em><br>Formula Mediei cu Teza:
+        <em id="formula-em">(3M + T) / 4</em></p>
     </div>
+    <div class="wrapper" id='wrapper'>
+      <p id="calc">Notele tale vor aparea <span class="calc-span">aici</span> si vor fi puse in formula</p>
+      <p id="result">Iar media va fi afisata <span class="calc-span">aici</span></p>
+      <p id="mean"></p>
 
-    <p class="thesis">Teza? <button class="thesis-btn-red" id="toggleBtn" onclick="thesisToggle()">Nu</button></p>
+      <div class="grade-grid">
+        <button class="grade-btn" onclick="addGrade(1)">1</button>
+        <button class="grade-btn" onclick="addGrade(2)">2</button>
+        <button class="grade-btn" onclick="addGrade(3)">3</button>
+        <button class="grade-btn" onclick="addGrade(4)">4</button>
+        <button class="grade-btn" onclick="addGrade(5)">5</button>
+        <button class="grade-btn" onclick="addGrade(6)">6</button>
+        <button class="grade-btn" onclick="addGrade(7)">7</button>
+        <button class="grade-btn" onclick="addGrade(8)">8</button>
+        <button class="grade-btn" onclick="addGrade(9)">9</button>
+        <button class="grade-btn" onclick="addGrade(10)">10</button>
+      </div>
 
-    <div class="thesis-grid hidden" id="thesisGrid">
-      <button class="thesis-select-btn" onclick="setThesis(1)">1</button>
-      <button class="thesis-select-btn" onclick="setThesis(2)">2</button>
-      <button class="thesis-select-btn" onclick="setThesis(3)">3</button>
-      <button class="thesis-select-btn" onclick="setThesis(4)">4</button>
-      <button class="thesis-select-btn" onclick="setThesis(5)">5</button>
-      <button class="thesis-select-btn" onclick="setThesis(6)">6</button>
-      <button class="thesis-select-btn" onclick="setThesis(7)">7</button>
-      <button class="thesis-select-btn" onclick="setThesis(8)">8</button>
-      <button class="thesis-select-btn" onclick="setThesis(9)">9</button>
-      <button class="thesis-select-btn" onclick="setThesis(10)">10</button>
+      <p class="thesis">Teza? <button class="thesis-btn-red" id="toggleBtn" onclick="thesisToggle()">Nu</button></p>
+
+      <div class="thesis-grid hidden" id="thesisGrid">
+        <button class="thesis-select-btn" onclick="setThesis(1)">1</button>
+        <button class="thesis-select-btn" onclick="setThesis(2)">2</button>
+        <button class="thesis-select-btn" onclick="setThesis(3)">3</button>
+        <button class="thesis-select-btn" onclick="setThesis(4)">4</button>
+        <button class="thesis-select-btn" onclick="setThesis(5)">5</button>
+        <button class="thesis-select-btn" onclick="setThesis(6)">6</button>
+        <button class="thesis-select-btn" onclick="setThesis(7)">7</button>
+        <button class="thesis-select-btn" onclick="setThesis(8)">8</button>
+        <button class="thesis-select-btn" onclick="setThesis(9)">9</button>
+        <button class="thesis-select-btn" onclick="setThesis(10)">10</button>
+      </div>
+
+      <button class="reset-btn" onclick="reset()">Reset</button>
+      <p id="hint"><em>Apasa pe notele care le ai, sau pe "Reset" ca sa incepi de la capat. Media va fi calculata
+          automat.</em></p>
     </div>
-
-    <button class="reset-btn" onclick="reset()">Reset</button>
-    <p id="hint"><em>Apasa pe notele care le ai, sau pe "Reset" ca sa incepi de la capat. Media va fi calculata automat.</em></p>
 
   </div>
 </body>
