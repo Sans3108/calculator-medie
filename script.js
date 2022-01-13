@@ -3,11 +3,10 @@ function randomBg() {
   body.className = Math.random() < 0.5 ? 'night' : 'day';
 }
 
-isFloat = x => !!(x % 1);
+const isFloat = x => !!(x % 1);
 
-function roundToTwo(n) {
-  return +(Math.round(n + "e+2") + "e-2");
-}
+const roundToTwo = n => Math.floor(n * 100) / 100;
+
 const maxLen = 10;
 let gradeArr = [];
 let thesis = 0;
@@ -42,15 +41,26 @@ function update() {
 
   let preText = `Media ta este:`;
 
-  calc.innerHTML = `${preText} ${makeFormulaString(gradeArr, thesis)}`;
+  let formulaString = makeFormulaString(gradeArr, thesis);
+
+  calc.innerHTML = `${preText} ${formulaString}`;
   let data = calculateMean(gradeArr, thesis);
 
-  if (isFloat(data.mean)) {
-    let m = document.getElementById('mean');
-    m.innerText = `(${data.mean})`;
-  }
-  result.innerText = `${data.rounded}`;
-  effect();
+  let m = document.getElementById('mean');
+  if (data.subDisplay !== 0) {
+    m.innerText = `(${data.subDisplay})`;
+  } else m.innerText = ``;
+
+  result.innerText = `${data.display}`;
+  effect(true, data);
+
+  console.log(`Grade Array:`);
+  console.log(gradeArr);
+  console.log(`Thesis:`);
+  console.log(thesis);
+  console.log(`Result:`);
+  console.log(data);
+  console.log('-------------------------------------------------');
 }
 
 function thesisToggle(s = false) {
@@ -76,29 +86,31 @@ function setThesis(g) {
   update();
 }
 
-function calculateMean(grd, t) {
-  let data = {
-    mean: 0,
-    rounded: 0
-  }
+function _mean(grades) {
+  let value = 0;
+  grades.forEach(i => value += i);
+  return value / grades.length; // un-rounded
+}
 
-  if (!grd[0]) {
-    if (t !== 0) {
-      data.mean = t;
-      data.rounded = t;
-      return data;
-    };
-  }
+function _meanThesis(mean, thesis) {
+  return (mean * 3 + thesis) / 4;
+}
 
-  let val = 0;
-  grd.forEach(i => val += i);
+function calculateMean(grades, thesis) {
+  if (!grades[0] && thesis !== 0) return { display: thesis, subDisplay: 0 };
+  if (grades.length === 1 && thesis === 0) return { display: grades[0], subDisplay: 0 };
 
-  data.mean = roundToTwo(val / grd.length);
+  let rawG = _mean(grades);
+  let twoG = roundToTwo(rawG);
+  let intG = Math.round(twoG);
 
-  if (t !== 0) data.mean = roundToTwo(((data.mean * 3) + t) / 4);
+  if (thesis === 0 && grades.length > 1) return { display: intG, subDisplay: isFloat(twoG) ? twoG : 0, raw: rawG };
 
-  data.rounded = Math.round(data.mean);
-  return data;
+  let rawT = _meanThesis(twoG, thesis);
+  let twoT = roundToTwo(rawT);
+  let intT = Math.round(twoT);
+
+  return { display: intT, subDisplay: isFloat(twoT) ? twoT : 0, raw: rawT };
 }
 
 function makeFormulaString(grd, t) {
@@ -113,14 +125,15 @@ function makeFormulaString(grd, t) {
   return `(<span class="grade-num">${grd[0]}</span> / <span class="grade-count">${grd.length}</span> * 3 + <span class="thesis-num">${t}</span>) / 4 =`;
 }
 
-function effect(s = true) {
+function effect(s = true, data) {
   let result = document.getElementById('result');
-  let mean = calculateMean(gradeArr, thesis).rounded;
 
   if (!s) {
     result.className = '';
     return;
   }
+
+  let mean = data.display;
 
   if (mean < 5) {
     result.className = 'effect-red';
